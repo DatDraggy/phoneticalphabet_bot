@@ -34,8 +34,8 @@ if ($text == '/start') {
 
   }
 
-  if ($isPhonetic) {
     sendMessage($chatId, $converted);
+  if ($isPhonetic) {
   } else {
     $text = preg_replace('/[^\w.ÖÄÜß ]/', '', strtoupper($text));
     $characters = str_split($text);
