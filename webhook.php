@@ -35,7 +35,7 @@ if ($text == '/start') {
           $zeros += 1;
         }
         else {
-          continue;
+          break;
         }
       }
       if ($zeros == 2) {
