@@ -24,8 +24,11 @@ if ($text == '/start') {
   $phonetics = explode(' ', preg_replace('/[^A-Z]/', '', strtoupper($text)));
   $isPhonetic = true;
   $flippedAlphabet = array_change_key_case(array_flip($alphabet), CASE_UPPER);
+
+  mail($config['mail'], 'Debug', print_r($flippedAlphabet, true));
   foreach ($phonetics as $phonetic) {
     if (!isset($flippedAlphabet[$phonetic]) && $phonetic !== ' ') {
+      mail($config['mail'], 'Debug', $phonetic);
       $isPhonetic = false;
       break;
     } else {
@@ -34,7 +37,7 @@ if ($text == '/start') {
 
   }
 
-    sendMessage($chatId, $converted);
+  sendMessage($chatId, $converted);
   if ($isPhonetic) {
   } else {
     $text = preg_replace('/[^\w.ÖÄÜß ]/', '', strtoupper($text));
