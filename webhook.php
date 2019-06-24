@@ -7,6 +7,7 @@ require_once('/var/libraries/composer/vendor/autoload.php');
 $response = file_get_contents('php://input');
 $data = json_decode($response, true);
 $dump = print_r($data, true);
+mail($config['mail'], 'Debug', $dump);
 
 $chatId = $data['message']['chat']['id'];
 $chatType = $data['message']['chat']['type'];
@@ -18,7 +19,6 @@ if (isset($data['message']['text'])) {
 
 if ($text == '/start') {
   sendMessage($chatId, 'Send me text and I will convert it into the phonetic alphabet.');
-
 } else {
   $characters = str_split($text);
 
