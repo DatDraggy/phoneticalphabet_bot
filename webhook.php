@@ -35,10 +35,12 @@ if ($text == '/start') {
           $zeros += 1;
         }
       }
-      if ($zeros == 2) {
+      if ($zeros < 2) {
+        $converted .= $alphabet[$characters[$i]];
+      } else if ($zeros === 2) {
         $converted .= $alphabet[$characters[$i]] . ' HUNDRED';
         $i += 2;
-      } else if ($zeros == 3) {
+      } else if ($zeros === 3) {
         $converted .= $alphabet[$characters[$i]] . ' THOUSAND';
         $i += 3;
       }
