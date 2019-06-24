@@ -34,9 +34,6 @@ if ($text == '/start') {
         if ($characters[$i + $x] === '0') {
           $zeros += 1;
         }
-        else {
-          break;
-        }
       }
       if ($zeros == 2) {
         $converted .= $alphabet[$characters[$i]] . ' HUNDRED';
