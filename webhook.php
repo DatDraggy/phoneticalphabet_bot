@@ -28,11 +28,11 @@ if ($text == '/start') {
   foreach ($phonetics as $phonetic) {
     if (!isset($flippedAlphabet[$phonetic]) && $phonetic !== ' ') {
       $isPhonetic = false;
+      $converted = '';
       break;
     } else {
       $converted .= $flippedAlphabet[$phonetic];
     }
-
   }
 
   if ($isPhonetic) {
