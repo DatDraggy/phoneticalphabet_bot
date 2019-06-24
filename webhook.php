@@ -19,7 +19,7 @@ if (isset($data['message']['text'])) {
 if ($text == '/start') {
   sendMessage($chatId, 'Send me text and I will convert it into the phonetic alphabet.');
 } else {
-  $text = preg_replace('/[^\wÖÄÜß]/', '', strtoupper($text));
+  $text = preg_replace('/[^\w.ÖÄÜß]/', '', strtoupper($text));
   $characters = str_split($text);
 
   $i = 0;
@@ -33,6 +33,9 @@ if ($text == '/start') {
       for ($x = 1; $x <= 3; $x++) {
         if ($characters[$i + $x] == 0) {
           $zeros += 1;
+        }
+        else {
+          continue;
         }
       }
       if ($zeros == 2) {
