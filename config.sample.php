@@ -44,5 +44,6 @@ $alphabet = array(
   '7' => 'SEVEN',
   '8' => 'EIGHT',
   '9' => 'NINER',
-  '.' => 'DECIMAL'
+  '.' => 'DECIMAL',
+  ' ' => '-'
 );
