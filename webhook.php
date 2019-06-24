@@ -31,7 +31,7 @@ if ($text == '/start') {
       //Figure
       $zeros = 0;
       for ($x = 1; $x <= 3; $x++) {
-        if ($characters[$i + $x] == 0) {
+        if ($characters[$i + $x] === '0') {
           $zeros += 1;
         }
         else {
