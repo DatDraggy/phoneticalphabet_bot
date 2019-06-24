@@ -17,7 +17,7 @@ if (isset($data['message']['text'])) {
 }
 
 if ($text == '/start') {
-  sendMessage($chatId, 'Send me text and I will convert it into the phonetic alphabet.';
+  sendMessage($chatId, 'Send me text and I will convert it into the phonetic alphabet.');
 } else {
   $text = preg_replace('/[^\wÖÄÜß]/', '', strtoupper($text));
   $characters = str_split($text);
