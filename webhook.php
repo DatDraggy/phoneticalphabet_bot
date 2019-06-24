@@ -25,7 +25,7 @@ if ($text == '/start') {
   $isPhonetic = true;
   $flippedAlphabet = array_change_key_case(array_flip($alphabet), CASE_UPPER);
   foreach ($phonetics as $phonetic) {
-    if (!isset($flippedAlphabet[$phonetic])) {
+    if (!isset($flippedAlphabet[$phonetic]) && $phonetic !== ' ') {
       $isPhonetic = false;
       break;
     } else {
