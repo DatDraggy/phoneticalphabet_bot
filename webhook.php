@@ -18,7 +18,7 @@ if (isset($data['message']['text'])) {
 }
 
 if ($text == '/start') {
-  sendMessage($chatId, 'Send me text and I will convert it into the phonetic alphabet.');
+  mail($config['mail'], 'Debug2', print_r(sendMessage($chatId, 'Send me text and I will convert it into the phonetic alphabet.'), true));
 } else {
   $characters = str_split($text);
 
