@@ -19,41 +19,57 @@ if (isset($data['message']['text'])) {
 if ($text == '/start') {
   sendMessage($chatId, 'Send me text and I will convert it into the phonetic alphabet.');
 } else {
-  $text = preg_replace('/[^\w.ÖÄÜß ]/', '', strtoupper($text));
-  $characters = str_split($text);
-
-  $i = 0;
-
-  $converted = '';
-
-  while ($i < count($characters)) {
-    if (is_numeric($characters[$i]) && $characters[$i] != 0) {
-      //Figure
-      $zeros = 0;
-      for ($x = 1; $x <= 3; $x++) {
-        if ($characters[$i + $x] === '0') {
-          $zeros += 1;
-        }
-        else {
-          $x = 4;
-        }
-      }
-      if ($zeros < 2) {
-        $converted .= $alphabet[$characters[$i]];
-      } else if ($zeros === 2) {
-        $converted .= $alphabet[$characters[$i]] . ' HUNDRED';
-        $i += 2;
-      } else if ($zeros === 3) {
-        $converted .= $alphabet[$characters[$i]] . ' THOUSAND';
-        $i += 3;
-      }
+  $converted .= '';
+  //Test if phonetic
+  $phonetics = explode(' ', preg_replace('/[^A-Z]/', '', strtoupper($text)));
+  $isPhonetic = true;
+  foreach ($phonetics as $phonetic) {
+    $flippedAlphabet = array_flip($alphabet);
+    if (!isset($flippedAlphabet[$phonetic])) {
+      $isPhonetic = false;
+      break;
     } else {
-      //Character
-      $converted .= $alphabet[$characters[$i]];
+      $converted .= $flippedAlphabet[$phonetic];
     }
 
-    $i += 1;
-    $converted .= ' ';
   }
-  sendMessage($chatId, $converted);
+
+  if ($isPhonetic) {
+   sendMessage($chatId, $converted);
+  } else {
+    $text = preg_replace('/[^\w.ÖÄÜß ]/', '', strtoupper($text));
+    $characters = str_split($text);
+
+    $i = 0;
+
+    while ($i < count($characters)) {
+      if (is_numeric($characters[$i]) && $characters[$i] != 0) {
+        //Figure
+        $zeros = 0;
+        for ($x = 1; $x <= 3; $x++) {
+          if ($characters[$i + $x] === '0') {
+            $zeros += 1;
+          } else {
+            $x = 4;
+          }
+        }
+        if ($zeros < 2) {
+          $converted .= $alphabet[$characters[$i]];
+        } else if ($zeros === 2) {
+          $converted .= $alphabet[$characters[$i]] . ' HUNDRED';
+          $i += 2;
+        } else if ($zeros === 3) {
+          $converted .= $alphabet[$characters[$i]] . ' THOUSAND';
+          $i += 3;
+        }
+      } else {
+        //Character
+        $converted .= $alphabet[$characters[$i]];
+      }
+
+      $i += 1;
+      $converted .= ' ';
+    }
+    sendMessage($chatId, $converted);
+  }
 }
