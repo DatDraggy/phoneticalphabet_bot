@@ -30,7 +30,7 @@ if ($text == '/start') {
     if (is_numeric($characters[$i]) && $characters[$i] != 0) {
       //Figure
       $zeros = 0;
-      for ($x = 1; $x < 3; $x++) {
+      for ($x = 1; $x <= 3; $x++) {
         if ($characters[$i + $x] == 0) {
           $zeros += 1;
         }
