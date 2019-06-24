@@ -34,6 +34,9 @@ if ($text == '/start') {
         if ($characters[$i + $x] === '0') {
           $zeros += 1;
         }
+        else {
+          $x = 4;
+        }
       }
       if ($zeros < 2) {
         $converted .= $alphabet[$characters[$i]];
