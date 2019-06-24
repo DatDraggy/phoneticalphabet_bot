@@ -14,12 +14,13 @@ $chatType = $data['message']['chat']['type'];
 $senderUserId = preg_replace("/[^0-9]/", "", $data['message']['from']['id']);
 
 if (isset($data['message']['text'])) {
-  $text = preg_replace('/[^\wÖÄÜß]/', '', strtoupper($data['message']['text']));
+  $text = $data['message']['text'];
 }
 
 if ($text == '/start') {
   mail($config['mail'], 'Debug2', print_r(sendMessage($chatId, 'Send me text and I will convert it into the phonetic alphabet.'), true));
 } else {
+  $text = preg_replace('/[^\wÖÄÜß]/', '', strtoupper($text));
   $characters = str_split($text);
 
   $i = 0;
