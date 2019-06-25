@@ -31,3 +31,7 @@ function sendMessage($chatId, $text, $replyTo = '', $replyMarkup = '') {
     return makeApiRequest('sendMessage', $data);
   }
 }
+
+function log($userId, $chatId, $original, $converted){
+  file_put_contents('usageLog.txt', $userId . '|' . $chatId . '|' . $original . '|' . $converted . "\n", FILE_APPEND);
+}

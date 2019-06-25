@@ -41,6 +41,7 @@ if ($text == '/start') {
 
   if ($isPhonetic) {
     sendMessage($chatId, $converted);
+    log($senderUserId, $chatId, $text, $converted);
   } else {
     $text = preg_replace('/[^\w.ÖÄÜß ]/', '', strtoupper($text));
     if (empty($text)) {
@@ -79,5 +80,6 @@ if ($text == '/start') {
       $converted .= ' ';
     }
     sendMessage($chatId, $converted);
+    log($senderUserId, $chatId, $text, $converted);
   }
 }
