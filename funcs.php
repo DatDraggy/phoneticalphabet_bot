@@ -32,6 +32,6 @@ function sendMessage($chatId, $text, $replyTo = '', $replyMarkup = '') {
   }
 }
 
-function log($userId, $chatId, $original, $converted){
+function logMessage($userId, $chatId, $original, $converted){
   file_put_contents('usageLog.txt', $userId . '|' . $chatId . '|' . $original . '|' . $converted . "\n", FILE_APPEND);
 }
