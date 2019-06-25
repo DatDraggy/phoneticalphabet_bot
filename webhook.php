@@ -22,23 +22,30 @@ if ($text == '/start') {
   $converted = '';
   //Test if phonetic
   $phonetics = explode(' ', preg_replace('/[^A-Z ]/', '', strtoupper($text)));
-  $isPhonetic = true;
-  $flippedAlphabet = array_change_key_case(array_flip($alphabet), CASE_UPPER);
+  if (!empty($phonetics)) {
+    $isPhonetic = true;
+    $flippedAlphabet = array_change_key_case(array_flip($alphabet), CASE_UPPER);
 
-  foreach ($phonetics as $phonetic) {
-    if (!isset($flippedAlphabet[$phonetic]) && $phonetic !== ' ') {
-      $isPhonetic = false;
-      $converted = '';
-      break;
-    } else {
-      $converted .= $flippedAlphabet[$phonetic];
+    foreach ($phonetics as $phonetic) {
+      if (!isset($flippedAlphabet[$phonetic]) && $phonetic !== ' ') {
+        $isPhonetic = false;
+        $converted = '';
+        break;
+      } else {
+        $converted .= $flippedAlphabet[$phonetic];
+      }
     }
+  } else {
+    $isPhonetic = false;
   }
 
   if ($isPhonetic) {
     sendMessage($chatId, $converted);
   } else {
     $text = preg_replace('/[^\w.ÖÄÜß ]/', '', strtoupper($text));
+    if (empty($text)) {
+      die();
+    }
     $characters = str_split($text);
 
     $i = 0;
