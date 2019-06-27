@@ -43,7 +43,7 @@ if ($text == '/start') {
     sendMessage($chatId, $converted);
     logMessage($senderUserId, $chatId, $text, $converted);
   } else {
-    $text = str_replace('ö', 'OE', str_replace('ä', 'AE', str_replace('ü', 'UE', $text)));
+    $text = str_replace(['ö', 'Ö'], 'OE', str_replace(['ä', 'Ä'], 'AE', str_replace(['ü', 'Ü'], 'UE', $text)));
     $text = preg_replace('/[^\w.ß ]/', '', strtoupper($text));
     if (empty($text)) {
       die();
