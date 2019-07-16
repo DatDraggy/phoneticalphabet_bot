@@ -21,7 +21,7 @@ if ($text == '/start') {
 } else {
   $converted = '';
   //Test if phonetic
-  $phonetics = explode(' ', preg_replace('/[^A-Z ]/', '', strtoupper($text)));
+  $phonetics = explode(' ', preg_replace('/[^A-Z\- ]/', '', strtoupper($text)));
   if (!empty($phonetics)) {
     $isPhonetic = true;
     $flippedAlphabet = array_change_key_case(array_flip($alphabet), CASE_UPPER);
@@ -44,7 +44,7 @@ if ($text == '/start') {
     logMessage($senderUserId, $chatId, $text, $converted);
   } else {
     $text = str_replace(['ö', 'Ö'], 'OE', str_replace(['ä', 'Ä'], 'AE', str_replace(['ü', 'Ü'], 'UE', $text)));
-    $text = preg_replace('/[^\w.ß\- ]/', '', strtoupper($text));
+    $text = preg_replace('/[^\w.ß ]/', '', strtoupper($text));
     if (empty($text)) {
       die();
     }
